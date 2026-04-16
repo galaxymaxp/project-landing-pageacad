@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="speedlightGlow" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ccff4e"/>
+      <stop offset="100%" stop-color="#6de2ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#04070b"/>
+  <circle cx="32" cy="32" r="22" fill="url(#speedlightGlow)" opacity="0.18"/>
+  <path
+    d="M19 20h11.5c8.7 0 14.5 4.8 14.5 12.1 0 7.5-5.8 12.4-14.5 12.4H19V20Zm10.5 17.3c4.4 0 7.2-2 7.2-5.2 0-3.2-2.8-5.1-7.2-5.1h-2.2v10.3h2.2Z"
+    fill="#f4f7fb"
+  />
+  <circle cx="16" cy="20" r="5.6" fill="#6de2ff"/>
+</svg>

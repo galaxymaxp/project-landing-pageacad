@@ -845,8 +845,14 @@ section {
     padding: 1rem;
     border: 1px solid var(--line);
     border-radius: 1.2rem;
-    background: rgba(6, 10, 15, 0.98);
-    box-shadow: var(--shadow);
+    background:
+      linear-gradient(180deg, rgba(5, 9, 14, 0.99), rgba(7, 12, 18, 0.995)),
+      radial-gradient(circle at top right, rgba(43, 188, 255, 0.08), transparent 45%);
+    backdrop-filter: blur(24px);
+    box-shadow:
+      0 28px 54px rgba(0, 0, 0, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    z-index: 35;
   }
 
   .nav-links.is-open {
