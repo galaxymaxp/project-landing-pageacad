@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header class="site-header" id="top">
     <nav class="navbar container" aria-label="Primary">
       <a class="brand" href="#top" aria-label="Speedlight Pro home">
@@ -30,6 +32,7 @@
         type="button"
         aria-expanded="false"
         aria-controls="primary-menu"
+        aria-haspopup="true"
         aria-label="Open navigation menu"
       >
         <span></span>
@@ -37,16 +40,16 @@
         <span></span>
       </button>
 
-      <div class="nav-links" id="primary-menu">
-        <a href="#features">Features</a>
-        <a href="#specs">Performance</a>
-        <a href="#why-speedlight">Why Choose It</a>
-        <a href="#cta">Launch Offer</a>
-      </div>
+      <ul class="nav-links" id="primary-menu">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#specs">Performance</a></li>
+        <li><a href="#why-speedlight">Why Choose It</a></li>
+        <li><a href="#cta">Launch Offer</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero" id="hero">
       <div class="container hero-layout">
         <div class="hero-copy">

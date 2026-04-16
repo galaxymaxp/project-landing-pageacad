@@ -89,6 +89,24 @@ section {
   margin: 0 auto;
 }
 
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 60;
+  padding: 0.9rem 1.1rem;
+  border-radius: 999px;
+  color: #041017;
+  background: linear-gradient(135deg, var(--lime), #8affb7);
+  box-shadow: 0 16px 36px rgba(142, 255, 175, 0.22);
+  transform: translateY(-160%);
+  transition: transform 0.25s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -229,6 +247,7 @@ section {
 
 .nav-links a {
   position: relative;
+  display: inline-flex;
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 500;
@@ -861,6 +880,7 @@ section {
   }
 
   .nav-links a {
+    display: flex;
     padding: 0.7rem 0;
   }
 
