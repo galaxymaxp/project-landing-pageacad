@@ -391,15 +391,15 @@ section {
   --profile-highlight: var(--cyan);
   --profile-accent: var(--orange);
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
   min-height: 32rem;
   padding: 2rem;
   border: 1px solid rgba(109, 226, 255, 0.12);
   border-radius: var(--radius-xl);
   background:
-    linear-gradient(145deg, rgba(14, 23, 33, 0.96), rgba(6, 11, 17, 0.92)),
-    radial-gradient(circle at top, rgba(255, 123, 66, 0.12), transparent 35%);
+    linear-gradient(180deg, rgba(18, 24, 33, 0.98), rgba(8, 12, 18, 0.96)),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03), transparent 30%);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -408,30 +408,28 @@ section {
 .mouse-stage::after {
   content: "";
   position: absolute;
-  inset: 1.1rem;
+  pointer-events: none;
+}
+
+.mouse-stage::before {
+  inset: 1rem;
   border-radius: calc(var(--radius-xl) - 10px);
   border: 1px solid rgba(255, 255, 255, 0.03);
   pointer-events: none;
 }
 
 .mouse-stage::after {
-  inset: auto 10% 12%;
-  height: 28%;
-  border: 0;
-  background: radial-gradient(circle, color-mix(in srgb, var(--profile-highlight) 28%, transparent), transparent 70%);
-  filter: blur(24px);
-}
-
-.stage-label,
-.stage-caption {
-  position: absolute;
-  z-index: 2;
-  border: 1px solid rgba(109, 226, 255, 0.12);
-  background: rgba(6, 10, 15, 0.82);
-  backdrop-filter: blur(14px);
+  top: 1.25rem;
+  bottom: 1.25rem;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.12), transparent);
 }
 
 .stage-label {
+  position: absolute;
+  z-index: 2;
   top: 1.4rem;
   left: 1.4rem;
   padding: 0.55rem 0.8rem;
@@ -441,141 +439,181 @@ section {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  border: 1px solid rgba(109, 226, 255, 0.14);
+  background: rgba(6, 10, 15, 0.8);
+  backdrop-filter: blur(14px);
 }
 
-.stage-caption {
-  right: 1.4rem;
-  bottom: 1.4rem;
-  max-width: 13rem;
-  padding: 0.8rem 0.95rem;
-  border-radius: 1rem;
-  color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.5;
-  text-align: right;
-}
-
-.stage-grid {
-  position: absolute;
-  inset: 1.4rem;
-  border-radius: calc(var(--radius-xl) - 10px);
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 2.75rem 2.75rem;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 75%);
-  pointer-events: none;
-}
-
-.mouse-orbit,
-.mouse-base-shadow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.mouse-orbit {
-  width: min(20rem, 78vw);
-  aspect-ratio: 1;
-  border: 1px solid rgba(109, 226, 255, 0.12);
-  box-shadow:
-    0 0 0 18px rgba(109, 226, 255, 0.04),
-    0 0 0 42px rgba(109, 226, 255, 0.02);
-}
-
-.mouse-glow {
-  position: absolute;
-  width: 16rem;
-  height: 16rem;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, color-mix(in srgb, var(--profile-highlight) 85%, white), color-mix(in srgb, var(--profile-highlight) 28%, transparent) 34%, transparent 65%);
-  filter: blur(32px);
-}
-
-.mouse-base-shadow {
-  bottom: 18%;
-  width: 17rem;
-  height: 5rem;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.58), transparent 70%);
-  filter: blur(12px);
-}
-
-.mouse-shell {
-  z-index: 1;
+.mouse-showcase {
   position: relative;
-  width: min(17rem, 70vw);
-  aspect-ratio: 0.8;
-  border-radius: 48% 48% 40% 40% / 34% 34% 56% 56%;
-  background:
-    linear-gradient(180deg, #111b24 0%, #0b1118 28%, #0d131b 62%, #060a10 100%);
-  border: 1px solid rgba(173, 210, 240, 0.08);
-  box-shadow:
-    inset 0 18px 32px rgba(255, 255, 255, 0.04),
-    inset 0 -22px 24px rgba(0, 0, 0, 0.4),
-    0 26px 40px rgba(0, 0, 0, 0.42);
-  transform: rotate(-16deg) translateY(-0.25rem);
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  padding-top: 2.2rem;
 }
 
-.mouse-shell::before {
+.mouse-variant {
+  --shell-top: #f1f1f1;
+  --shell-mid: #dddddd;
+  --shell-bottom: #c3c3c3;
+  --shell-border: rgba(0, 0, 0, 0.2);
+  --shell-sheen: rgba(255, 255, 255, 0.34);
+  --button-top: #f7f7f7;
+  --button-bottom: #d8d8d8;
+  --button-border: rgba(0, 0, 0, 0.22);
+  --seam: rgba(0, 0, 0, 0.5);
+  --side-button: #1b1b1b;
+  --drop-shadow: rgba(0, 0, 0, 0.24);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: end;
+  min-height: 26rem;
+  padding-top: 1.4rem;
+}
+
+.mouse-variant-dark {
+  --shell-top: #323232;
+  --shell-mid: #1d1d1d;
+  --shell-bottom: #0b0b0c;
+  --shell-border: rgba(255, 255, 255, 0.08);
+  --shell-sheen: rgba(255, 255, 255, 0.06);
+  --button-top: #2f2f2f;
+  --button-bottom: #161616;
+  --button-border: rgba(0, 0, 0, 0.4);
+  --seam: rgba(0, 0, 0, 0.8);
+  --side-button: #202020;
+  --drop-shadow: rgba(0, 0, 0, 0.48);
+}
+
+.mouse-cable {
+  position: absolute;
+  top: -0.45rem;
+  width: 0.62rem;
+  height: 3.35rem;
+  border-radius: 999px;
+  background: repeating-linear-gradient(180deg, #0f1012 0 6px, #242529 6px 10px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 10px 18px rgba(0, 0, 0, 0.24);
+}
+
+.mouse-shell-front {
+  position: relative;
+  width: min(13rem, 92%);
+  height: 21rem;
+  border-radius: 38% 38% 44% 44% / 18% 18% 56% 56%;
+  background:
+    linear-gradient(180deg, var(--shell-top) 0%, var(--shell-mid) 42%, var(--shell-bottom) 100%);
+  border: 1px solid var(--shell-border);
+  box-shadow:
+    inset 0 16px 18px var(--shell-sheen),
+    inset 0 -20px 30px rgba(0, 0, 0, 0.1),
+    0 24px 32px var(--drop-shadow);
+  overflow: hidden;
+}
+
+.mouse-shell-front::before {
   content: "";
   position: absolute;
-  inset: 6% 9% 12%;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%, rgba(0, 0, 0, 0.3));
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.24), transparent 32%),
+    linear-gradient(130deg, rgba(255, 255, 255, 0.1), transparent 38%);
+  pointer-events: none;
 }
 
-.mouse-top {
+.mouse-shell-front::after {
+  content: "";
   position: absolute;
-  top: 10%;
-  left: 50%;
-  width: 18%;
-  height: 32%;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.2));
-  transform: translateX(-50%);
+  left: 16%;
+  right: 16%;
+  bottom: 2%;
+  height: 18%;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--profile-highlight) 18%, transparent), transparent 72%);
+  filter: blur(12px);
+  pointer-events: none;
 }
 
-.mouse-button {
+.mouse-button-row {
   position: absolute;
-  top: 11%;
-  width: 36%;
-  height: 30%;
-  border-radius: 38% 38% 22% 22% / 30% 30% 16% 16%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(8, 12, 18, 0.12));
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
 }
 
-.mouse-button-left {
-  left: 10%;
-  transform: skewY(3deg);
+.mouse-click {
+  background: linear-gradient(180deg, var(--button-top), var(--button-bottom));
+  border-bottom: 1px solid var(--button-border);
+  box-shadow: inset 0 -10px 14px rgba(0, 0, 0, 0.05);
 }
 
-.mouse-button-right {
-  right: 10%;
-  transform: skewY(-3deg);
+.mouse-click-left {
+  border-radius: 30% 0 8% 8% / 16% 0 6% 6%;
+}
+
+.mouse-click-right {
+  border-radius: 0 30% 8% 8% / 0 16% 6% 6%;
 }
 
 .mouse-wheel {
   position: absolute;
-  top: 22%;
+  top: 6%;
   left: 50%;
-  width: 8%;
-  height: 17%;
+  width: 11%;
+  height: 15%;
   border-radius: 999px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.34), color-mix(in srgb, var(--profile-highlight) 78%, white), rgba(255, 255, 255, 0.14));
-  box-shadow: 0 0 18px color-mix(in srgb, var(--profile-highlight) 48%, transparent);
+    linear-gradient(180deg, #131417 0%, #1d1f22 18%, #090a0c 100%);
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--profile-highlight) 22%, transparent),
+    0 8px 10px rgba(0, 0, 0, 0.18);
   transform: translateX(-50%);
 }
 
-.mouse-accent {
+.mouse-wheel::before {
+  content: "";
   position: absolute;
-  inset: auto 18% 17%;
-  height: 5px;
+  inset: 9% 24%;
+  border-radius: inherit;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 4px);
+}
+
+.mouse-center-line {
+  position: absolute;
+  top: 0;
+  bottom: 52%;
+  left: 50%;
+  width: 1px;
+  background: var(--seam);
+  transform: translateX(-50%);
+}
+
+.mouse-side-button {
+  position: absolute;
+  top: 43%;
+  left: 0;
+  width: 0.26rem;
+  height: 2.1rem;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, var(--profile-accent), var(--profile-highlight), transparent);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--profile-highlight) 42%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--side-button) 75%, white), var(--side-button));
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16);
+  transform: translateX(-42%);
+}
+
+.mouse-finish {
+  margin: 1rem 0 0;
+  color: rgba(229, 238, 247, 0.72);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .hero-spec-card {
@@ -606,13 +644,13 @@ section {
 }
 
 .hero-spec-card-top {
-  top: 12%;
-  right: 4%;
+  top: 5.2rem;
+  right: 1.5rem;
 }
 
 .hero-spec-card-bottom {
-  bottom: 11%;
-  left: 4%;
+  bottom: 1.6rem;
+  left: 1.5rem;
 }
 
 .features,
@@ -1159,21 +1197,48 @@ section {
   }
 
   .mouse-stage {
-    min-height: 23rem;
+    display: grid;
+    align-items: stretch;
+    min-height: 24rem;
     padding: 1.15rem;
+    gap: 0.85rem;
   }
 
-  .stage-label,
-  .stage-caption {
+  .stage-label {
     position: static;
     width: 100%;
-    max-width: none;
     margin-top: 0.85rem;
     text-align: left;
   }
 
-  .mouse-orbit {
-    width: min(16rem, 76vw);
+  .mouse-showcase {
+    gap: 0.4rem;
+    padding-top: 1.35rem;
+  }
+
+  .mouse-variant {
+    min-height: 17.5rem;
+    padding-top: 0.85rem;
+  }
+
+  .mouse-cable {
+    top: -0.25rem;
+    width: 0.42rem;
+    height: 2.1rem;
+  }
+
+  .mouse-shell-front {
+    width: min(8.3rem, 96%);
+    height: 14rem;
+  }
+
+  .mouse-finish {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-spec-card-top {
+    margin-top: 1rem;
   }
 
   .hero-spec-card {
