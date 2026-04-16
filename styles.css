@@ -644,8 +644,13 @@ section {
 
 .feature-card,
 .advantage-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
   padding: 1.6rem;
   border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .feature-card h3,
@@ -661,9 +666,29 @@ section {
 .selector-header p,
 .dpi-description,
 .cta-panel p {
-  margin-top: 0.8rem;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.card-kicker,
+.card-note {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.card-kicker {
+  color: var(--cyan);
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.card-note {
+  margin-top: auto;
+  padding-top: 1rem;
+  color: rgba(201, 233, 255, 0.82);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
 }
 
 .feature-card:nth-child(2) {
@@ -699,6 +724,9 @@ section {
 
 .spec-grid article,
 .dpi-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
   padding: 1.35rem;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(109, 226, 255, 0.1);
