@@ -368,6 +368,8 @@ section {
 }
 
 .mouse-stage {
+  --profile-highlight: var(--cyan);
+  --profile-accent: var(--orange);
   position: relative;
   display: grid;
   place-items: center;
@@ -406,7 +408,7 @@ section {
   height: 16rem;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(109, 226, 255, 0.75), rgba(109, 226, 255, 0.18) 34%, transparent 65%);
+    radial-gradient(circle, color-mix(in srgb, var(--profile-highlight) 85%, white), color-mix(in srgb, var(--profile-highlight) 28%, transparent) 34%, transparent 65%);
   filter: blur(32px);
 }
 
@@ -472,8 +474,8 @@ section {
   height: 17%;
   border-radius: 999px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(43, 188, 255, 0.7), rgba(255, 255, 255, 0.14));
-  box-shadow: 0 0 18px rgba(109, 226, 255, 0.45);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), color-mix(in srgb, var(--profile-highlight) 78%, white), rgba(255, 255, 255, 0.14));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--profile-highlight) 48%, transparent);
   transform: translateX(-50%);
 }
 
@@ -482,8 +484,8 @@ section {
   inset: auto 18% 17%;
   height: 5px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, var(--orange), var(--cyan), transparent);
-  box-shadow: 0 0 18px rgba(109, 226, 255, 0.4);
+  background: linear-gradient(90deg, transparent, var(--profile-accent), var(--profile-highlight), transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--profile-highlight) 42%, transparent);
 }
 
 .hero-spec-card {
